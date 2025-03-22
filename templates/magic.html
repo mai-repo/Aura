@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <title>Ask the Aura</title>
+    <script>
+        async function askMagic8Ball(event) {
+            event.preventDefault(); // Prevent form submission from reloading the page
+
+            const formData = new FormData(event.target);
+            const question = formData.get('question');
+
+            if (!question) return;
+
+            const response = await fetch('/magic-8-ball', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                document.querySelector('p.answer').innerHTML = `${data.answer}`;
+            } else {
+                document.querySelector('p.answer').innerHTML = `Error: ${data.error || 'Something went wrong'}`;
+            }
+            event.target.querySelector('input[name="question"]').value = '';
+        }
+    </script>
+</head>
+<body class="bg-blue-400">
+    <div>
+        <h1 class="flex justify-center p-10 m-2 text-6xl text-white">Ask the Aura Anything?</h1>
+        <div class="relative">
+            <div class="aura w-1/3 mx-auto rounded-full"></div>
+            <p class="answer absolute custom-top left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-xl text-center"></p>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-center p-10">
+        <form onsubmit="askMagic8Ball(event)" class="flex flex-col">
+            <input
+            type="text"
+            name="question"
+            placeholder="Type your question here"
+            class="m-2 text-center  rounded-lg w-96 p-1"
+            required />
+            <button class="bg-white rounded-lg w-50 mx-auto p-1" type="submit">Get your answer!</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<style>
+
+    .aura {
+    width: 600px; /* Adjust the size of the aura */
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.905);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(225, 230, 173, 0.5), 0 0 60px rgba(230, 222, 173, 0.3);
+    animation: auraAnimation 2s infinite ease-in-out;
+    position: relative;
+    }
+
+    @keyframes auraAnimation {
+        0% {
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.5), 0 0 60px rgba(255, 255, 0, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 60px rgba(255, 255, 0, 0.8), 0 0 100px rgba(255, 255, 0, 0.5);
+        }
+        100% {
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.5), 0 0 60px rgba(255, 255, 0, 0.3);
+        }
+        }
+
+    .custom-top {
+        top: 50%;
+    }
+  </style>
