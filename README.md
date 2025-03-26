@@ -9,9 +9,7 @@ A fun web application where users can ask any question and get a random response
 - **Dynamic Responses**: Powered by a Flask backend with a predefined set of responses.
 - **Responsive Design**: Styled with TailwindCSS for a modern and responsive look.
 - **Aura Animation**: A glowing aura effect adds a magical touch to the app.
-
----
-
+  
 ## Installation
 
 ### Steps
@@ -34,16 +32,12 @@ A fun web application where users can ask any question and get a random response
     ```
 5. Open your browser and navigate to `http://127.0.0.1:5000`.
 
----
-
 ## Usage
 
 1. Open the app in your browser.
 2. Type your question into the input field.
 3. Click the "Ask" button to receive a random response.
 4. Enjoy the magical aura animation while waiting for your answer!
-
----
 
 ## Contributing
 
