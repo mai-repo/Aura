@@ -1,4 +1,5 @@
 # Ask the Aura - Magic 8 Ball App
+<img width="800" alt="Ask_Aura" src="https://github.com/user-attachments/assets/6f9b0db9-f6dd-4528-b971-030bfde47402" />
 
 A fun web application where users can ask any question and get a random response, just like a Magic 8 Ball! Built with Flask, TailwindCSS, and JavaScript.
 
